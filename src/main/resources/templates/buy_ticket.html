@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Выберите событие</title>
+</head>
+<body>
+<h1>Выберите событие</h1>
+<form action="/buy-ticket" method="post">
+  <label for="eventId">Событие:</label>
+  <select name="eventId" id="eventId" required>
+    <option th:each="event : ${events}" th:value="${event.eventId}" th:text="${event.name}"></option>
+  </select>
+  <button type="submit">Выбрать событие</button>
+</form>
+</body>
+</html>

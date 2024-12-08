@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Подробности о сотруднике</title>
+</head>
+<body>
+<h1>Подробности о сотруднике</h1>
+<p><strong>Имя:</strong> <span th:text="${staff.name}"></span></p>
+<p><strong>Должность:</strong> <span th:text="${staff.position}"></span></p>
+<p><strong>Контактная информация:</strong> <span th:text="${staff.contactInformation}"></span></p>
+<p><strong>Зарплата:</strong> <span th:text="${salaryResult}"></span></p>
+
+<!-- Можно добавить кнопки для редактирования/удаления -->
+<a href="/staff">Назад к списку</a>
+</body>
+</html>

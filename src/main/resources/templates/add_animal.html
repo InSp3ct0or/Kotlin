@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавить животное</title>
+</head>
+<body>
+<h1>Добавить новое животное</h1>
+<form action="/animal/add" method="post">
+  <label for="name">Имя:</label>
+  <input type="text" id="name" name="name" required><br>
+
+  <label for="species">Вид:</label>
+  <input type="text" id="species" name="species" required><br>
+
+  <label for="birthdate">Дата рождения:</label>
+  <input type="date" id="birthdate" name="birthdate" required><br>
+
+  <label for="gender">Пол:</label>
+  <input type="text" id="gender" name="gender" required><br>
+
+  <label for="enclosureId">Вольер:</label>
+  <select name="enclosureId" id="enclosureId" required>
+    <option th:each="enclosure : ${enclosures}"
+            th:value="${enclosure.enclosureId}"
+    th:text="${enclosure.location + ' (' + enclosure.capacity + ' мест)'}"></option>
+  </select><br>
+
+  <button type="submit">Добавить животное</button>
+</form>
+
+</body>
+</html>

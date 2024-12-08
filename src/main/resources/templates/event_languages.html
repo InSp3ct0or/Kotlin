@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Языки для мероприятия</title>
+</head>
+<body>
+<h1 th:text="'Языки для события: ' + ${event.name}"></h1>
+
+<div th:if="${languages != null}">
+  <ul>
+    <li th:each="language : ${languages}" th:text="${language.languageName}"></li>
+  </ul>
+</div>
+<div th:if="${languages == null}">
+  <p>Нет доступных языков для этого события.</p>
+</div>
+
+<div th:if="${message != null}">
+  <p th:text="${message}"></p>
+</div>
+<a href="/" class="btn">Главное меню</a>
+
+</body>
+</html>

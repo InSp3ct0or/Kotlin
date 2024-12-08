@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Успешная покупка билета</title>
+</head>
+<body>
+<h1>Спасибо за покупку, <span th:text="${visitor.name}"></span>!</h1>
+<p>Ваш билет на событие <span th:text="${event.name}"></span> успешно оформлен.</p>
+
+<!-- Отображаем цену -->
+<p>Стоимость: <span th:text="${price}"></span> EUR</p>
+
+<p>Язык проведения: <span th:text="${language.languageName}"></span></p>
+<a href="/" class="btn">Главное меню</a>
+</body>
+</html>

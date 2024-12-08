@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Главное меню</title>
+</head>
+<body>
+<h1>Добро пожаловать!</h1>
+<p>Вы вошли как: <strong th:text="${username}"></strong></p>
+
+<h2>Действия</h2>
+<ul>
+    <li><a href="/auth/register">Зарегистрироваться</a></li>
+    <li><a href="/login">Войти</a></li>
+    <li><a href="/animal">Посмотреть животных</a> (только для воркеров)</li>
+    <li><a href="/buy-ticket">Купить билет</a> (только для пользователей)</li>
+    <li><a href="/logout">Выйти</a></li>
+
+    <!-- Кнопка для работников -->
+    <li th:if="${isWorker}">
+        <a href="/staff">Рассчитать зарплату</a> (только для работников)
+    </li>
+</ul>
+</body>
+</html>

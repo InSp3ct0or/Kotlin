@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Заполните данные для покупки билета</title>
+</head>
+<body>
+<h1>Заполните ваши данные для покупки билета на <span th:text="${event.name}"></span></h1>
+
+<form action="/buy-ticket/process-ticket" method="post">
+  <input type="hidden" name="eventId" th:value="${event.eventId}"/>
+
+  <label for="name">Имя:</label>
+  <input type="text" id="name" name="name" required><br>
+
+  <label for="age">Возраст:</label>
+  <input type="number" id="age" name="age" min="1" required><br>
+
+
+  <label for="contactInformation">Контактная информация:</label>
+  <input type="text" id="contactInformation" name="contactInformation"><br>
+
+  <label for="languageId">Язык мероприятия:</label>
+  <select name="languageId" id="languageId" required>
+    <option th:each="language : ${languages}" th:value="${language.languageId}" th:text="${language.languageName}"></option>
+  </select><br>
+
+  <button type="submit">Купить билет</button>
+</form>
+</body>
+</html>

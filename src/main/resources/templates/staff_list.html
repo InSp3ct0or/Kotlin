@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Сотрудники</title>
+</head>
+<body>
+<h1>Список сотрудников</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Должность</th>
+    <th>Контактная информация</th>
+    <th>Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="staff : ${staffList}">
+    <td th:text="${staff.name}"></td>
+    <td th:text="${staff.position}"></td>
+    <td th:text="${staff.contactInformation}"></td>
+    <td><a th:href="@{/staff/details/{staffId}(staffId=${staff.staffId})}">Подробнее</a></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

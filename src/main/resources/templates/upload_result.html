@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Результат загрузки</title>
+</head>
+<body>
+<h1>Результат загрузки</h1>
+<p th:text="${message}"></p>
+<p th:if="${fileId != null}">
+  Файл был загружен. Вы можете просмотреть его по <a th:href="@{/files/view/{fileId}(fileId=${fileId})}">ссылке</a>.
+</p>
+</body>
+</html>

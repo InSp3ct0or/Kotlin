@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Мои билеты</title>
+</head>
+<body>
+<a href="/" class="btn">Главное меню</a>
+<h1>Мои билеты</h1>
+<p th:if="${message}" th:text="${message}"></p>
+<ul>
+  <li th:each="ticket : ${tickets}">
+    <span th:text="${ticket.event.name}">Название мероприятия</span>
+    - <span th:text="${ticket.visitDate}">Дата посещения</span>
+  </li>
+</ul>
+</body>
+</html>

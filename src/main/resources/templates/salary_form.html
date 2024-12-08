@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Расчет зарплаты</title>
+</head>
+<body>
+<h1>Расчет зарплаты</h1>
+
+<form action="/calculate-salary" method="post">
+  <label for="staffId">Выберите сотрудника:</label>
+  <select name="staffId" id="staffId" required>
+    <option th:each="staff : ${staffList}"
+            th:value="${staff.staffId}"
+            th:text="${staff.name}"></option>
+  </select>
+  <button type="submit">Расчитать зарплату</button>
+</form>
+
+</body>
+</html>

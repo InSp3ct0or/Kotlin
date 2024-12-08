@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Список животных</title>
+</head>
+<body>
+<h1>Список животных</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Вид</th>
+    <th>Дата рождения</th>
+    <th>Пол</th>
+    <th>Вольер</th>
+    <th>Загрузить изображение</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="animal : ${animals}">
+    <td th:text="${animal.name}"></td>
+    <td th:text="${animal.species}"></td>
+    <td th:text="${animal.birthdate}"></td>
+    <td th:text="${animal.gender}"></td>
+    <td th:text="${animal.enclosure.location}"></td>
+    <td>
+      <form action="/files/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <input type="hidden" name="uploadedBy" value="Работник"> <!-- Заменить на нужное имя -->
+        <button type="submit">Загрузить изображение</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/animal/add">Добавить животное</a>
+</body>
+</html>
