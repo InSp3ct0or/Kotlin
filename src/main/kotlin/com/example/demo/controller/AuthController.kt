@@ -14,13 +14,13 @@ class AuthController {
 
     @GetMapping("/register")
     fun showRegistrationForm(model: Model): String {
-        model.addAttribute("user", User()) // Пользовательский объект для формы регистрации
+        model.addAttribute("user", User()) // Uživatelský objekt
         return "register"
     }
 
     @PostMapping("/register")
     fun registerUser(@ModelAttribute user: User, model: Model): String {
-        // Логика регистрации пользователя
+        // Registrace uživatele
         return "registration_success"
     }
 }

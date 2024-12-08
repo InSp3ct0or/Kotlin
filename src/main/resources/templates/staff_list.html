@@ -1,17 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Сотрудники</title>
+  <title>Zaměstnanci</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<h1>Список сотрудников</h1>
+<h1>Seznam zaměstnanců</h1>
 <table>
   <thead>
   <tr>
-    <th>Имя</th>
-    <th>Должность</th>
-    <th>Контактная информация</th>
-    <th>Действия</th>
+    <th>Jméno</th>
+    <th>Pozice</th>
+    <th>Kontaktní informace</th>
+    <th>Akce</th>
   </tr>
   </thead>
   <tbody>
@@ -19,7 +69,7 @@
     <td th:text="${staff.name}"></td>
     <td th:text="${staff.position}"></td>
     <td th:text="${staff.contactInformation}"></td>
-    <td><a th:href="@{/staff/details/{staffId}(staffId=${staff.staffId})}">Подробнее</a></td>
+    <td><a th:href="@{/staff/details/{staffId}(staffId=${staff.staffId})}">Více informací</a></td>
   </tr>
   </tbody>
 </table>

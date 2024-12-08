@@ -18,6 +18,6 @@ data class EventLanguages(
     @JoinColumn(name = "LANGUAGE_ID", referencedColumnName = "LANGUAGE_ID", insertable = false, updatable = false)
     val language: Language = Language()
 ) {
-    // Secondary constructor with no arguments
+
     constructor() : this(0, Event(), Language())
 }

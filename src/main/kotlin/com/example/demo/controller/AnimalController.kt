@@ -16,7 +16,7 @@ class AnimalController(
     private val enclosureRepository: EnclosureRepository
 ) {
 
-    // Просмотр всех животных (для пользователей)
+    // Zvířata
     @GetMapping
     fun listAnimals(model: Model): String {
         val animals = animalRepository.findAll()
@@ -24,13 +24,13 @@ class AnimalController(
         return "animal_list"
     }
 
-    // Добавление нового животного (для администраторов)
+    // Formulář
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add")
     fun showAddAnimalForm(model: Model): String {
-        val enclosures = enclosureRepository.findAll()  // Получаем список всех вольеров
+        val enclosures = enclosureRepository.findAll()  // Výběhy
         model.addAttribute("enclosures", enclosures)
-        return "animal_form"  // Шаблон для формы
+        return "animal_form"  // Šablona
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -44,10 +44,10 @@ class AnimalController(
         model: Model
     ): String {
         try {
-            // Проверяем, существует ли вольер
-            val enclosure = enclosureRepository.findById(enclosureId).orElseThrow { IllegalArgumentException("Вольер не найден") }
+            // Ověření
+            val enclosure = enclosureRepository.findById(enclosureId).orElseThrow { IllegalArgumentException("Výběh nenalezen") }
 
-            // Создаем объект Animal
+            // Vytvoření
             val animal = Animal(
                 name = name,
                 species = species,
@@ -56,19 +56,16 @@ class AnimalController(
                 enclosure = enclosure
             )
 
-            // Сохраняем животное в базу данных
+            // Uložení
             animalRepository.save(animal)
 
-            model.addAttribute("message", "Животное добавлено успешно!")
+            model.addAttribute("message", "Zvíře bylo úspěšně přidáno!")
             return "redirect:/animal"
         } catch (e: Exception) {
-            // Логируем ошибку
-            println("Ошибка при добавлении животного: ${e.message}")
-            model.addAttribute("message", "Ошибка: ${e.message}")
+            // Chyba
+            println("Chyba při přidávání zvířete: ${e.message}")
+            model.addAttribute("message", "Chyba: ${e.message}")
             return "animal_form"
         }
     }
 }
-
-
-

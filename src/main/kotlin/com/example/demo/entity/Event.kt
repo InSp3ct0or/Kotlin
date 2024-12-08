@@ -23,6 +23,6 @@ data class Event(
     @Column(name = "ATTENDEES")
     val attendees: Int? = null
 ) {
-    // No-arg constructor
+
     constructor() : this(0, "", Date(), null, null)
 }

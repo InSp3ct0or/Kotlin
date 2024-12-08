@@ -15,22 +15,22 @@ class SalaryController(
     private val salaryService: SalaryService
 ) {
 
-    // Отображение страницы с выбором сотрудника для расчета зарплаты
+    // Výběr zaměstnanců
     @GetMapping("/calculate-salary")
     fun showSalaryCalculationForm(model: Model): String {
-        val staffList = staffRepository.findAll() // Получаем всех сотрудников
+        val staffList = staffRepository.findAll() // Získání seznamu zaměstnanců
         model.addAttribute("staffList", staffList)
-        return "salary_form" // Шаблон для выбора сотрудника
+        return "salary_form" // Formulář pro výběr zaměstnanců
     }
 
-    // Обработка расчета зарплаты по выбранному сотруднику
+    // Výpočet mzdy
     @PostMapping("/calculate-salary")
     fun calculateSalary(
         @RequestParam staffId: Long,
         model: Model
     ): String {
-        val salaryInfo = salaryService.calculateSalary(staffId) // Вычисление зарплаты
-        model.addAttribute("salaryInfo", salaryInfo) // Добавляем результат в модель
-        return "salary_result" // Шаблон для отображения результатов
+        val salaryInfo = salaryService.calculateSalary(staffId) // Výpočet mzdy
+        model.addAttribute("salaryInfo", salaryInfo) // Přidání výsledků
+        return "salary_result" // Zobrazení výsledků
     }
 }

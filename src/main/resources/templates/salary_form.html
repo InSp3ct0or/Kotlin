@@ -1,19 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Расчет зарплаты</title>
+  <title>Výpočet platu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-<h1>Расчет зарплаты</h1>
+<h1>Výpočet platu</h1>
 
 <form action="/calculate-salary" method="post">
-  <label for="staffId">Выберите сотрудника:</label>
+  <label for="staffId">Vyberte zaměstnance:</label>
   <select name="staffId" id="staffId" required>
     <option th:each="staff : ${staffList}"
             th:value="${staff.staffId}"
             th:text="${staff.name}"></option>
   </select>
-  <button type="submit">Расчитать зарплату</button>
+  <button type="submit">Vypočítat plat</button>
 </form>
 
 </body>

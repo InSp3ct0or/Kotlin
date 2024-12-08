@@ -7,19 +7,19 @@ import jakarta.persistence.*
 data class Enclosure(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ENCLOSUREID")  // Название столбца в базе данных
+    @Column(name = "ENCLOSUREID")
     val enclosureId: Long = 0,
 
-    @Column(name = "TYPE")  // Тип вольера
+    @Column(name = "TYPE")
     val type: String,
 
-    @Column(name = "LOCATION")  // Местоположение вольера
+    @Column(name = "LOCATION")
     val location: String,
 
-    @Column(name = "CAPACITY")  // Вместимость вольера
+    @Column(name = "CAPACITY")
     val capacity: Int
 )
 {
-    // Конструктор без параметров для JPA
+
     constructor() : this(0, "", "", 0)
 }

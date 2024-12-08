@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Успешная покупка билета</title>
+  <title>Úspěšný nákup vstupenky</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #28a745;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<h1>Спасибо за покупку, <span th:text="${visitor.name}"></span>!</h1>
-<p>Ваш билет на событие <span th:text="${event.name}"></span> успешно оформлен.</p>
+<h1>Thank you for your purchase, <span th:text="${visitor.name}"></span>!</h1>
+<p>Your ticket for the event <span th:text="${event.name}"></span> has been successfully booked.</p>
 
-<!-- Отображаем цену -->
-<p>Стоимость: <span th:text="${price}"></span> EUR</p>
+<!-- Showing the price -->
+<p>Price: <span th:text="${price}"></span> EUR</p>
 
-<p>Язык проведения: <span th:text="${language.languageName}"></span></p>
-<a href="/" class="btn">Главное меню</a>
+<p>Language of the event: <span th:text="${language.languageName}"></span></p>
+<a href="/" class="btn">Home Page</a>
 </body>
 </html>

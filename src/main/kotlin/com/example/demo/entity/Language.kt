@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 
 @Entity
-@Table(name = "LANGUAGES")  // Указываем правильное имя таблицы
+@Table(name = "LANGUAGES")
 data class Language(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,6 @@ data class Language(
     val languageName: String
 )
  {
-    // Secondary constructor with default values
+
     constructor() : this(0, "")
 }

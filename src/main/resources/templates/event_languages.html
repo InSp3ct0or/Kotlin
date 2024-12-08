@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Языки для мероприятия</title>
+  <title>Jazyky pro událost</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    p {
+      color: #555;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<h1 th:text="'Языки для события: ' + ${event.name}"></h1>
+<h1 th:text="'Jazyky pro událost: ' + ${event.name}"></h1>
 
 <div th:if="${languages != null}">
   <ul>
@@ -12,13 +64,13 @@
   </ul>
 </div>
 <div th:if="${languages == null}">
-  <p>Нет доступных языков для этого события.</p>
+  <p>Pro tuto událost nejsou k dispozici žádné jazyky.</p>
 </div>
 
 <div th:if="${message != null}">
   <p th:text="${message}"></p>
 </div>
-<a href="/" class="btn">Главное меню</a>
+<a href="/" class="btn">Hlavní menu</a>
 
 </body>
 </html>

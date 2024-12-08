@@ -1,23 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Главное меню</title>
+    <title>Hlavní menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #555;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>Добро пожаловать!</h1>
-<p>Вы вошли как: <strong th:text="${username}"></strong></p>
+<h1>Vítejte!</h1>
+<p>Jste přihlášen jako: <strong th:text="${username}"></strong></p>
 
-<h2>Действия</h2>
+<h2>Akce</h2>
 <ul>
-    <li><a href="/auth/register">Зарегистрироваться</a></li>
-    <li><a href="/login">Войти</a></li>
-    <li><a href="/animal">Посмотреть животных</a> (только для воркеров)</li>
-    <li><a href="/buy-ticket">Купить билет</a> (только для пользователей)</li>
-    <li><a href="/logout">Выйти</a></li>
+    <li><a href="/auth/register">Registrovat se</a></li>
+    <li><a href="/login">Přihlásit se</a></li>
+    <li><a href="/animal">Prohlédnout si zvířata</a> (pouze pro pracovníky)</li>
+    <li><a href="/buy-ticket">Koupit lístek</a> (pouze pro uživatele)</li>
+    <li><a href="/logout">Odhlásit se</a></li>
 
-    <!-- Кнопка для работников -->
+    <!-- Tlačítko pro pracovníky -->
     <li th:if="${isWorker}">
-        <a href="/staff">Рассчитать зарплату</a> (только для работников)
+        <a href="/staff">Vypočítat mzdu</a> (pouze pro pracovníky)
     </li>
 </ul>
 </body>

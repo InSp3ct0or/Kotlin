@@ -21,6 +21,6 @@ data class Staff(
     @Column(name = "CONTACTINFORMATION")
     val contactInformation: String = ""
 ) {
-    // Secondary constructor with no arguments
+
     constructor() : this(0L, "", "", "")
 }

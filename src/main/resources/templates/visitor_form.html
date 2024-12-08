@@ -1,30 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Заполните данные для покупки билета</title>
+  <title>Vyplňte údaje pro nákup vstupenky</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-<h1>Заполните ваши данные для покупки билета на <span th:text="${event.name}"></span></h1>
+<h1>Vyplňte vaše údaje pro nákup vstupenky na <span th:text="${event.name}"></span></h1>
 
 <form action="/buy-ticket/process-ticket" method="post">
   <input type="hidden" name="eventId" th:value="${event.eventId}"/>
 
-  <label for="name">Имя:</label>
+  <label for="name">Jméno:</label>
   <input type="text" id="name" name="name" required><br>
 
-  <label for="age">Возраст:</label>
+  <label for="age">Věk:</label>
   <input type="number" id="age" name="age" min="1" required><br>
 
-
-  <label for="contactInformation">Контактная информация:</label>
+  <label for="contactInformation">Kontaktní informace:</label>
   <input type="text" id="contactInformation" name="contactInformation"><br>
 
-  <label for="languageId">Язык мероприятия:</label>
+  <label for="languageId">Jazyk události:</label>
   <select name="languageId" id="languageId" required>
     <option th:each="language : ${languages}" th:value="${language.languageId}" th:text="${language.languageName}"></option>
   </select><br>
 
-  <button type="submit">Купить билет</button>
+  <button type="submit">Koupit vstupenku</button>
 </form>
 </body>
 </html>

@@ -19,6 +19,6 @@ data class Visitor(
     @Column(name = "CONTACTINFORMATION")
     val contactInformation: String? = null
 ) {
-    // No-arg constructor
+
     constructor() : this(0, "", 0, null)
 }

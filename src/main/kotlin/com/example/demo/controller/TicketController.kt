@@ -26,7 +26,7 @@ class TicketController(
     @PersistenceContext
     private lateinit var entityManager: EntityManager
 
-    // Шаблон для отображения событий и выбора
+    // Zobrazení formuláře pro výběr události
     @GetMapping
     fun showTicketForm(model: Model): String {
         val events = eventRepository.findAll()
@@ -34,16 +34,17 @@ class TicketController(
         return "buy_ticket"
     }
 
-    // После выбора события и языка, отображаем форму для ввода данных посетителя
+    // Formulář pro zadání údajů o návštěvníkovi
     @PostMapping
     fun showVisitorForm(@RequestParam eventId: Long, model: Model): String {
-        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Событие не найдено") }
+        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Událost nenalezena") }
         val languages = languageRepository.findAll()
         model.addAttribute("event", event)
         model.addAttribute("languages", languages)
         return "visitor_form"
     }
 
+    // Zpracování nákupu lístku
     @PostMapping("/process-ticket")
     fun processTicketPurchase(
         @RequestParam eventId: Long,
@@ -53,26 +54,26 @@ class TicketController(
         @RequestParam contactInformation: String?,
         model: Model
     ): String {
-        // Проверка возраста
+        // Kontrola věku
         if (age <= 0) {
-            model.addAttribute("message", "Возраст должен быть больше 0.")
+            model.addAttribute("message", "Věk musí být větší než 0.")
             return "visitor_form"
         }
 
-        // Сохранение данных посетителя
+        // Uložení údajů o návštěvníkovi
         val visitor = Visitor(name = name, age = age, contactInformation = contactInformation)
         val savedVisitor = visitorRepository.save(visitor)
 
-        // Получаем событие и язык
-        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Событие не найдено") }
-        val language = languageRepository.findById(languageId).orElseThrow { IllegalArgumentException("Язык не найден") }
+        // Získání události a jazyka
+        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Událost nenalezena") }
+        val language = languageRepository.findById(languageId).orElseThrow { IllegalArgumentException("Jazyk nenalezen") }
 
-        // Цена билета
+        // Cena lístku
         val price = 20.0
 
-        // Создание билета
+        // Vytvoření lístku
         val ticket = Ticket(
-            price = price,  // Примерная цена
+            price = price,  // Předpokládaná cena
             visitDate = java.util.Date(),
             visitor = savedVisitor,
             event = event,
@@ -81,14 +82,12 @@ class TicketController(
 
         ticketRepository.save(ticket)
 
-        // Передаем в модель данные для отображения
+        // Odeslání dat do modelu
         model.addAttribute("visitor", savedVisitor)
         model.addAttribute("event", event)
         model.addAttribute("language", language)
-        model.addAttribute("price", price)  // Передаем цену билета
+        model.addAttribute("price", price)  // Cena lístku
 
-        return "ticket_success"  // Шаблон успешной покупки
+        return "ticket_success"  // Šablona pro úspěšný nákup
     }
-
-
 }

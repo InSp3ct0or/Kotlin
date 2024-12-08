@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface EventLanguagesRepository : JpaRepository<EventLanguages, Long> {
-    // Метод для поиска языков по событию
-    fun findByEvent(event: Event): List<EventLanguages>  // Найдем языки для данного события
+
+    fun findByEvent(event: Event): List<EventLanguages>
 
 
 }

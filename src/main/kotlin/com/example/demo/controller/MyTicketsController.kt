@@ -22,7 +22,7 @@ class MyTicketsController(
         val visitorId = authentication.name.toLongOrNull()
 
         if (visitorId == null) {
-            model.addAttribute("message", "Идентификатор пользователя не найден.")
+            model.addAttribute("message", "Uživatelský identifikátor nebyl nalezen.")
             model.addAttribute("tickets", emptyList<Ticket>())
             return "my_tickets"
         }
@@ -30,7 +30,7 @@ class MyTicketsController(
         val visitor = visitorRepository.findById(visitorId).orElse(null)
 
         if (visitor == null) {
-            model.addAttribute("message", "Посетитель с ID $visitorId не найден.")
+            model.addAttribute("message", "Návštěvník s ID $visitorId nebyl nalezen.")
             model.addAttribute("tickets", emptyList<Ticket>())
             return "my_tickets"
         }
@@ -40,7 +40,3 @@ class MyTicketsController(
         return "my_tickets"
     }
 }
-
-
-
-

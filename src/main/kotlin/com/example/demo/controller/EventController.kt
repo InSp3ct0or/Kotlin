@@ -18,7 +18,7 @@ class EventController(
     private val languageRepository: LanguageRepository
 ) {
 
-    // Просмотр всех мероприятий
+    // Akce
     @GetMapping
     fun listEvents(model: Model): String {
         val events: List<Event> = eventRepository.findAll()
@@ -26,30 +26,29 @@ class EventController(
         return "events"
     }
 
-    // Просмотр языков для конкретного мероприятия
+    // Jazyky akce
     @GetMapping("/{eventId}")
     fun getEventLanguages(@PathVariable eventId: Long, model: Model): String {
-        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Событие не найдено") }
-        val languages = eventLanguagesRepository.findByEvent(event)  // Получаем связи событий с языками
+        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Akce nenalezena") }
+        val languages = eventLanguagesRepository.findByEvent(event)  // Spojení akce a jazyků
         model.addAttribute("event", event)
         model.addAttribute("languages", languages)
         return "event_languages"
     }
 
-
-    // Добавление нового языка для события
+    // Přidání jazyka
     @PostMapping("/{eventId}/add-language")
     fun addLanguageToEvent(
-        @PathVariable eventId: Long,  // Получаем eventId из URL
-        @RequestParam languageId: Long?,  // Получаем ID языка из параметров запроса
+        @PathVariable eventId: Long,  // Získání eventId z URL
+        @RequestParam languageId: Long?,  // Získání ID jazyka z parametru
         model: Model
     ): String {
-        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Событие не найдено") }
-        val language = languageRepository.findById(languageId ?: 1L).orElseThrow { IllegalArgumentException("Язык не найден") }  // Если язык не выбран, используем язык по умолчанию
+        val event = eventRepository.findById(eventId).orElseThrow { IllegalArgumentException("Akce nenalezena") }
+        val language = languageRepository.findById(languageId ?: 1L).orElseThrow { IllegalArgumentException("Jazyk nenalezen") }  // Výchozí jazyk
 
-        val eventLanguage = EventLanguages(event = event, language = language ?: Language()) // Создаем связь между событием и языком
+        val eventLanguage = EventLanguages(event = event, language = language ?: Language()) // Spojení akce a jazyka
         eventLanguagesRepository.save(eventLanguage)
-        model.addAttribute("message", "Language added successfully!")
+        model.addAttribute("message", "Jazyk úspěšně přidán!")
 
         return "redirect:/event/$eventId"
     }

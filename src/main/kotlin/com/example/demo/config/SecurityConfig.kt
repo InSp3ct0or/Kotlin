@@ -17,7 +17,7 @@ class SecurityConfig(
 ) {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance()
+        return NoOpPasswordEncoder.getInstance() //no hash pass
     }
 
 

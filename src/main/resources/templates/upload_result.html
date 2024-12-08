@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Результат загрузки</title>
+  <title>Výsledek nahrání</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      text-align: center;
+      background: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<h1>Результат загрузки</h1>
+<h1>Výsledek nahrání</h1>
 <p th:text="${message}"></p>
 <p th:if="${fileId != null}">
-  Файл был загружен. Вы можете просмотреть его по <a th:href="@{/files/view/{fileId}(fileId=${fileId})}">ссылке</a>.
+  Soubor byl nahrán. Můžete si ho prohlédnout přes <a th:href="@{/files/view/{fileId}(fileId=${fileId})}">odkaz</a>.
 </p>
 </body>
 </html>

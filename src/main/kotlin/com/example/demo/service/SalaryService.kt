@@ -18,6 +18,6 @@ class SalaryService(
         )
         query.setParameter("staffId", staffId)
         val result = query.singleResult
-        return result.toString() // Возвращаем результат в виде строки
+        return result.toString()
     }
 }

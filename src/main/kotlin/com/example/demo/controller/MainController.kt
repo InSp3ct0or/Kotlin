@@ -11,18 +11,18 @@ class MainController {
 
     @GetMapping("/")
     fun mainMenu(model: Model, auth: Authentication?): String {
-        // Если пользователь авторизован, добавляем его имя в модель
+        // Pokud je uživatel přihlášen, přidáme jeho jméno
         if (auth != null) {
             model.addAttribute("username", auth.name)
 
-            // Проверка роли
+            // Kontrola role
             val isWorker = auth.authorities.contains(SimpleGrantedAuthority("ROLE_WORKER"))
             model.addAttribute("isWorker", isWorker)
         } else {
-            model.addAttribute("username", "Гость")
+            model.addAttribute("username", "Host")
             model.addAttribute("isWorker", false)
         }
 
-        return "menu" // Вернуть страницу menu.html
+        return "menu" // Vrátí stránku menu.html
     }
 }

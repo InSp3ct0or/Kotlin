@@ -18,32 +18,32 @@ class StaffController(
     @PersistenceContext
     private lateinit var entityManager: EntityManager
 
-    // Просмотр списка сотрудников - доступно только воркерам
+    // Seznam zaměstnanců - pouze pro pracovníky
     @PreAuthorize("hasRole('ROLE_WORKER')")
     @GetMapping
     fun listStaff(model: Model): String {
         val staffList = staffRepository.findAll()
         model.addAttribute("staffList", staffList)
-        return "staff_list"  // Шаблон для отображения списка сотрудников
+        return "staff_list"  // Šablona pro zobrazení seznamu zaměstnanců
     }
 
-    // Отображение подробной информации о выбранном сотруднике
+    // Zobrazení detailů zaměstnanců
     @PreAuthorize("hasRole('ROLE_WORKER')")
     @GetMapping("/details/{staffId}")
     fun showStaffDetails(@PathVariable staffId: Long, model: Model): String {
-        val staff = staffRepository.findById(staffId).orElseThrow { IllegalArgumentException("Сотрудник не найден") }
+        val staff = staffRepository.findById(staffId).orElseThrow { IllegalArgumentException("Zaměstnanec nenalezen") }
 
-        // Расчет зарплаты для выбранного сотрудника
+        // Výpočet mzdy pro zaměstnanca
         val salaryResult = calculateSalary(staffId)
 
-        // Отправка данных в модель
+        // Odeslání dat do modelu
         model.addAttribute("staff", staff)
         model.addAttribute("salaryResult", salaryResult)
 
-        return "staff_details"  // Шаблон для отображения данных сотрудника
+        return "staff_details"  // Šablona pro zobrazení detailů
     }
 
-    // Вызов функции для расчета зарплаты
+    // Funkce pro výpočet mzdy
     private fun calculateSalary(staffId: Long): String {
         val query = entityManager.createNativeQuery("SELECT ST69589.calculate_salary(:staffId) FROM DUAL")
         query.setParameter("staffId", staffId)

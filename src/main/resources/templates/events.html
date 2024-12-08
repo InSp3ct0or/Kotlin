@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Мероприятия</title>
+  <title>Události</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<a href="/" class="btn">Главное меню</a>
+<a href="/" class="btn">Hlavní menu</a>
 
-<h1>Мероприятия</h1>
+<h1>Události</h1>
 <ul>
   <li th:each="event : ${events}">
-    <a th:href="@{/event/{id}(id=${event.eventid})}" th:text="${event.name}">Event Name</a>
+    <a th:href="@{/event/{id}(id=${event.eventid})}" th:text="${event.name}">Název události</a>
   </li>
 </ul>
 </body>

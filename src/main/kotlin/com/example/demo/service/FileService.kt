@@ -10,7 +10,7 @@ import java.io.IOException
 @Service
 class FileService(@Autowired private val fileRepository: FileRepository) {
 
-    // Загружаем файл в базу данных
+    // Nahrání souboru do databáze
     fun uploadFile(file: MultipartFile, uploadedBy: String): Long {
         val fileData = BinaryContent(
             fileName = file.originalFilename ?: "unknown",
@@ -26,9 +26,9 @@ class FileService(@Autowired private val fileRepository: FileRepository) {
         return savedFile.contentId
     }
 
-    // Получаем бинарные данные файла по ID
+    // Získání binárních dat souboru podle ID
     fun getFileData(fileId: Long): ByteArray {
-        val file = fileRepository.findById(fileId).orElseThrow { RuntimeException("File not found") }
+        val file = fileRepository.findById(fileId).orElseThrow { RuntimeException("Soubor nenalezen") }
         return file.fileData
     }
 }

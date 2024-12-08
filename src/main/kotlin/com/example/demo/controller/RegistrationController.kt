@@ -22,23 +22,23 @@ class RegistrationController(
 
     @PostMapping("/register")
     fun registerUser(@ModelAttribute user: User, model: Model): String {
-        // Проверка на уникальность логина
+        // Kontrola unikátního uživatele
         val existingUser = userRepository.findByUsername(user.username)
         if (existingUser != null) {
-            model.addAttribute("error", "Пользователь с таким логином уже существует.")
-            return "register"  // Возвращаем на форму регистрации с ошибкой
+            model.addAttribute("error", "Uživatel s tímto jménem již existuje.")
+            return "register"  // Vracíme formulář s chybou
         }
 
-        // Хешируем пароль и сохраняем пользователя
+        // Hashování hesla a uložení uživatele
         val newUser = User(
             username = user.username,
-            password = passwordEncoder.encode(user.password),  // Хешируем пароль
-            role = "ROLE_USER" // Устанавливаем роль по умолчанию
+            password = passwordEncoder.encode(user.password),  // Hashování hesla
+            role = "ROLE_USER" // Výchozí role
         )
         userRepository.save(newUser)
 
-        // Сообщение об успешной регистрации
-        model.addAttribute("message", "Регистрация успешна! Теперь вы можете войти в систему.")
-        return "registration_success"  // Перенаправление на страницу успешной регистрации
+        // Úspěšná registrace
+        model.addAttribute("message", "Registrace byla úspěšná! Nyní se můžete přihlásit.")
+        return "registration_success"  // Přesměrování na stránku úspěšné registrace
     }
 }

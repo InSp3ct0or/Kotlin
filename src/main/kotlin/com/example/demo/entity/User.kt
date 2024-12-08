@@ -18,6 +18,6 @@ data class User(
     @Column(nullable = false)
     val role: String = ""
 ) {
-    // Secondary constructor with no arguments
+
     constructor() : this(0, "", "", "")
 }

@@ -12,13 +12,13 @@ import java.io.IOException
 @RequestMapping("/files")
 class FileController(@Autowired val fileService: FileService) {
 
-    // Отображение формы для загрузки файла
+    // Formulář
     @GetMapping("/upload")
     fun showUploadForm(): String {
         return "upload_form"
     }
 
-    // Обработка загрузки файла
+    // Nahrání souboru
     @PostMapping("/upload")
     fun uploadFile(
         @RequestParam("file") file: MultipartFile,
@@ -26,19 +26,19 @@ class FileController(@Autowired val fileService: FileService) {
         model: Model
     ): String {
         try {
-            val fileId = fileService.uploadFile(file, uploadedBy) // Загружаем файл
-            model.addAttribute("message", "Файл успешно загружен!")
+            val fileId = fileService.uploadFile(file, uploadedBy) // Nahrávání souboru
+            model.addAttribute("message", "Soubor byl úspěšně nahrán!")
             model.addAttribute("fileId", fileId)
         } catch (e: IOException) {
-            model.addAttribute("message", "Ошибка загрузки файла: ${e.message}")
+            model.addAttribute("message", "Chyba při nahrávání souboru: ${e.message}")
         }
         return "upload_result"
     }
 
-    // Просмотр файла по ID
+    // Zobrazení souboru
     @GetMapping("/view/{fileId}")
     @ResponseBody
     fun viewFile(@PathVariable fileId: Long): ByteArray {
-        return fileService.getFileData(fileId) // Извлекаем бинарные данные и возвращаем их
+        return fileService.getFileData(fileId) // Získání dat souboru
     }
 }

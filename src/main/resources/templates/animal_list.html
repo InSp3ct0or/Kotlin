@@ -1,19 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Список животных</title>
+  <title>Seznam zvířat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<h1>Список животных</h1>
+<h1>Seznam zvířat</h1>
 <table>
   <thead>
   <tr>
-    <th>Имя</th>
-    <th>Вид</th>
-    <th>Дата рождения</th>
-    <th>Пол</th>
-    <th>Вольер</th>
-    <th>Загрузить изображение</th>
+    <th>Jméno</th>
+    <th>Druh</th>
+    <th>Datum narození</th>
+    <th>Pohlaví</th>
+    <th>Výběh</th>
+    <th>Načíst obrázek</th>
   </tr>
   </thead>
   <tbody>
@@ -26,13 +103,13 @@
     <td>
       <form action="/files/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" required>
-        <input type="hidden" name="uploadedBy" value="Работник"> <!-- Заменить на нужное имя -->
-        <button type="submit">Загрузить изображение</button>
+        <input type="hidden" name="uploadedBy" value="Pracovník"> <!-- Změňte na správné jméno -->
+        <button type="submit">Načíst obrázek</button>
       </form>
     </td>
   </tr>
   </tbody>
 </table>
-<a href="/animal/add">Добавить животное</a>
+<a href="/animal/add">Přidat zvíře</a>
 </body>
 </html>

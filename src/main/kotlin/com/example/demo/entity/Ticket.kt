@@ -29,6 +29,6 @@ data class Ticket(
     @JoinColumn(name = "LANGUAGE_ID", referencedColumnName = "LANGUAGE_ID")
     val language: Language = Language()
 ) {
-    // No-arg constructor
+
     constructor() : this(0, 0.0, Date(), Visitor(), Event(), Language())
 }
