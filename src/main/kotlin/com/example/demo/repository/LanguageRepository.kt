@@ -7,5 +7,5 @@ import java.util.Optional
 
 @Repository
 interface LanguageRepository : JpaRepository<Language, Long> {
-    override fun findById(id: Long): Optional<Language>  // Получаем язык по ID
+    override fun findById(id: Long): Optional<Language>
 }

@@ -14,7 +14,7 @@ class AuthController {
 
     @GetMapping("/register")
     fun showRegistrationForm(model: Model): String {
-        model.addAttribute("user", User()) // Uživatelský objekt
+        model.addAttribute("user", User())
         return "register"
     }
 
