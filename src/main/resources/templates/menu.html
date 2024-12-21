@@ -81,6 +81,11 @@
     <li th:if="${isWorker}">
         <a href="/staff">Vypočítat mzdu</a> (pouze pro pracovníky)
     </li>
+
+    <!-- Tlačítko pro administrátory -->
+    <li th:if="${isAdmin}">
+        <a href="/admin/dashboard">Administrátorský panel</a> (pouze pro administrátory)
+    </li>
 </ul>
 </body>
 </html>

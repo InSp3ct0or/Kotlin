@@ -1,6 +1,7 @@
 package com.example.demo.entity
 
 import jakarta.persistence.*
+import org.springframework.format.annotation.DateTimeFormat
 import java.util.Date
 
 @Entity
@@ -15,6 +16,7 @@ data class Event(
     val name: String = "",
 
     @Column(name = "EVENT_DATE")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     val eventDate: Date = Date(),
 
     @Column(name = "DESCRIPTION")

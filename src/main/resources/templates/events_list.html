@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Управление событиями</title>
+</head>
+<body>
+<h1>События</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Дата</th>
+    <th>Описание</th>
+    <th>Посетители</th>
+    <th>Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="event : ${events}">
+    <td th:text="${event.name}"></td>
+    <td th:text="${event.eventDate}"></td>
+    <td th:text="${event.description}"></td>
+    <td th:text="${event.attendees}"></td>
+    <td>
+      <a th:href="@{'/admin/events/edit/' + ${event.eventId}}">Изменить</a>
+      <a th:href="@{'/admin/events/delete/' + ${event.eventId}}">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="/admin/events/add">Добавить событие</a>
+<br>
+<a href="/admin/dashboard">Вернуться к панели администратора</a>
+</body>
+</html>
