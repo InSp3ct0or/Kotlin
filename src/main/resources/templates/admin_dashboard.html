@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Админ-панель</title>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>Админ-панель</h1>
-<p>Добро пожаловать, <strong th:text="${username}"></strong>!</p>
+<h1>Admin Panel</h1>
+<p>Vítejte, <strong th:text="${username}"></strong>!</p>
 
-<h2>Выберите таблицу для редактирования:</h2>
+<h2>Vyberte tabulku pro úpravy:</h2>
 <ul>
-  <li><a href="/admin/events">Управление событиями</a></li>
-  <li><a href="/admin/food">Управление продуктами</a></li>
-  <li><a href="/admin/vendors">Управление поставщиками</a></li>
-  <li><a href="/admin/enclosures">Управление вольерами</a></li>
+  <li><a href="/admin/events">Správa událostí</a></li>
+  <li><a href="/admin/food">Správa potravin</a></li>
+  <li><a href="/admin/vendor">Správa dodavatelů</a></li>
+  <li><a href="/admin/enclosure">Správa výběhů</a></li>
 </ul>
 
-<a href="/">Вернуться в главное меню</a>
+<a href="/">Návrat na hlavní menu</a>
 </body>
 </html>

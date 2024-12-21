@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Добавить/Изменить событие</title>
+  <title>Přidat/Upravit událost</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1 th:text="${event.eventId != null} ? 'Изменить событие' : 'Добавить событие'"></h1>
+<h1 th:text="${event.eventId != null} ? 'Upravit událost' : 'Přidat událost'"></h1>
 
 <form th:action="@{/admin/events/save}" th:object="${event}" method="post">
   <input type="hidden" th:field="*{eventId}" />
-  <label>Название:</label>
+
+  <label>Název:</label>
   <input type="text" th:field="*{name}" required /><br>
 
-  <label>Дата:</label>
+  <label>Datum:</label>
   <input type="date" th:field="*{eventDate}" required /><br>
 
-  <label>Описание:</label>
+  <label>Popis:</label>
   <textarea th:field="*{description}"></textarea><br>
 
-  <label>Посетители:</label>
+  <label>Účastníci:</label>
   <input type="number" th:field="*{attendees}" required /><br>
 
-  <button type="submit">Сохранить</button>
+  <button type="submit">Uložit</button>
 </form>
 
-<a href="/admin/events">Вернуться к списку событий</a>
+<a href="/admin/events">Zpět na seznam událostí</a>
 </body>
 </html>

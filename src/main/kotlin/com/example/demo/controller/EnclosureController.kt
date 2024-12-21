@@ -2,14 +2,24 @@ package com.example.demo.controller
 
 import com.example.demo.entity.Enclosure
 import com.example.demo.repository.EnclosureRepository
+import com.example.demo.service.EnclosureService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/admin/enclosure")
-class EnclosureController(private val enclosureRepository: EnclosureRepository) {
+class EnclosureController(
+    private val enclosureRepository: EnclosureRepository,
+    private val enclosureService: EnclosureService
+) {
 
+    @GetMapping("/enclosure/hierarchy")
+    fun showEnclosureHierarchy(model: Model): String {
+        val enclosuresTree = enclosureService.getEnclosureHierarchy()
+        model.addAttribute("enclosuresTree", enclosuresTree)
+        return "enclosure_hierarchy"
+    }
     @GetMapping
     fun listEnclosures(model: Model): String {
         val enclosures = enclosureRepository.findAll()

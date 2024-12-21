@@ -2,12 +2,13 @@ package com.example.demo.controller
 
 import com.example.demo.entity.Vendor
 import com.example.demo.repository.VendorRepository
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 
 @Controller
-@RequestMapping("/vendor")
+@RequestMapping("/admin/vendor")
 class VendorController(private val vendorRepository: VendorRepository) {
 
     @GetMapping
@@ -24,9 +25,14 @@ class VendorController(private val vendorRepository: VendorRepository) {
     }
 
     @PostMapping("/add")
-    fun addVendor(@ModelAttribute vendor: Vendor): String {
-        vendorRepository.save(vendor)
-        return "redirect:/vendor"
+    fun addVendor(@ModelAttribute vendor: Vendor, model: Model): String {
+        return try {
+            vendorRepository.save(vendor)
+            "redirect:/admin/vendor"
+        } catch (e: DataIntegrityViolationException) {
+            model.addAttribute("errorMessage", "Nelze přidat dodavatele, protože dodavatel s tímto ID již existuje.")
+            "vendor_error"
+        }
     }
 
     @GetMapping("/edit/{id}")
@@ -37,14 +43,24 @@ class VendorController(private val vendorRepository: VendorRepository) {
     }
 
     @PostMapping("/edit/{id}")
-    fun editVendor(@PathVariable id: Long, @ModelAttribute vendor: Vendor): String {
-        vendorRepository.save(vendor)
-        return "redirect:/vendor"
+    fun editVendor(@PathVariable id: Long, @ModelAttribute vendor: Vendor, model: Model): String {
+        return try {
+            vendorRepository.save(vendor)
+            "redirect:/admin/vendor"
+        } catch (e: DataIntegrityViolationException) {
+            model.addAttribute("errorMessage", "Nelze upravit dodavatele, protože dodavatel s tímto ID již existuje.")
+            "vendor_error"
+        }
     }
 
     @PostMapping("/delete/{id}")
-    fun deleteVendor(@PathVariable id: Long): String {
-        vendorRepository.deleteById(id)
-        return "redirect:/vendor"
+    fun deleteVendor(@PathVariable id: Long, model: Model): String {
+        return try {
+            vendorRepository.deleteById(id)
+            "redirect:/admin/vendor"
+        } catch (e: DataIntegrityViolationException) {
+            model.addAttribute("errorMessage", "Nelze smazat dodavatele, protože již dodává jídlo.")
+            "vendor_error"
+        }
     }
 }

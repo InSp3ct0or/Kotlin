@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Список поставщиков</title>
-  <style>
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ddd; padding: 8px; }
-    th { background-color: #f4f4f4; }
-    a { text-decoration: none; color: #007bff; }
-    a:hover { text-decoration: underline; }
-  </style>
+  <title>Seznam dodavatelů</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>Список поставщиков</h1>
+<h1>Seznam dodavatelů</h1>
 <table>
   <thead>
   <tr>
-    <th>Имя</th>
-    <th>Контактная информация</th>
-    <th>Действия</th>
+    <th>Jméno</th>
+    <th>Kontaktní informace</th>
+    <th>Akce</th>
   </tr>
   </thead>
   <tbody>
@@ -25,14 +19,14 @@
     <td th:text="${vendor.name}"></td>
     <td th:text="${vendor.contactInformation}"></td>
     <td>
-      <a th:href="@{'/vendor/edit/' + ${vendor.vendorId}}">Редактировать</a> |
-      <form th:action="@{'/vendor/delete/' + ${vendor.vendorId}}" method="post" style="display:inline;">
-        <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить</button>
+      <a th:href="@{'/admin/vendor/edit/' + ${vendor.vendorId}}">Upravit</a> |
+      <form th:action="@{'/admin/vendor/delete/' + ${vendor.vendorId}}" method="post" style="display:inline;">
+        <button type="submit" onclick="return confirm('Jste si jisti, že chcete smazat?');">Smazat</button>
       </form>
     </td>
   </tr>
   </tbody>
 </table>
-<a href="/vendor/add">Добавить поставщика</a>
+<a href="/admin/vendor/add">Přidat dodavatele</a>
 </body>
 </html>

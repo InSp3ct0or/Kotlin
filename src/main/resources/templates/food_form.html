@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Добавить / Редактировать продукт</title>
+  <title>Přidat / Upravit produkt</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1 th:text="${food.foodId != null} ? 'Редактировать продукт' : 'Добавить продукт'"></h1>
-<form th:action="@{${food.foodId != null} ? '/food/edit/' + ${food.foodId} : '/food/add'}" method="post">
-  <label for="name">Имя:</label>
+<h1 th:text="${food.foodId != null} ? 'Upravit produkt' : 'Přidat produkt'"></h1>
+<form th:action="@{${food.foodId != null} ? '/admin/food/edit/' + ${food.foodId} : '/admin/food/add'}" method="post">
+  <label for="name">Název:</label>
   <input type="text" id="name" name="name" th:value="${food.name}" required><br>
 
-  <label for="quantity">Количество:</label>
+  <label for="quantity">Množství:</label>
   <input type="number" id="quantity" name="quantity" th:value="${food.quantity}" required><br>
 
-  <label for="expiryDate">Дата окончания срока:</label>
+  <label for="expiryDate">Datum expirace:</label>
   <input type="date" id="expiryDate" name="expiryDate" th:value="${food.expiryDate}" required><br>
 
-  <label for="vendor">Поставщик:</label>
+  <label for="vendor">Dodavatel:</label>
   <select id="vendor" name="vendor.vendorId" required>
     <option th:each="vendor : ${vendors}" th:value="${vendor.vendorId}" th:text="${vendor.name}" th:selected="${food.vendor != null && food.vendor.vendorId == vendor.vendorId}"></option>
   </select><br>
 
-  <button type="submit">Сохранить</button>
+  <button type="submit">Uložit</button>
 </form>
-<a href="/food">Назад</a>
+<a href="/admin/food">Zpět</a>
 </body>
 </html>

@@ -25,10 +25,10 @@ class SecurityConfig(
             .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
                 auth
-                    .requestMatchers("/admin/**").hasRole("ADMIN") // Добавляем доступ для ADMIN к эндпоинтам admin/*
-                    .requestMatchers("/animal/**").hasAnyRole("WORKER", "ADMIN") // WORKER и ADMIN
-                    .requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN") // USER и ADMIN
-                    .anyRequest().permitAll() // Все остальные запросы доступны без авторизации
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/animal/**").hasAnyRole("WORKER", "ADMIN")
+                    .requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN")
+                    .anyRequest().permitAll()
             }
             .formLogin { formLogin -> formLogin.defaultSuccessUrl("/", true) }
             .logout { logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/") }

@@ -11,6 +11,6 @@ class AdminController {
     @GetMapping("/admin/dashboard")
     fun adminDashboard(model: Model, auth: Authentication): String {
         model.addAttribute("username", auth.name)
-        return "admin_dashboard" // возвращает страницу с кнопками таблиц
+        return "admin_dashboard"
     }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Kurzory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <h1>Kurzory</h1>
+  <form action="/executeCursor" method="post">
+    <button type="submit">Spustit kurzor</button>
+  </form>
+  <div>
+    <h2>Výsledky:</h2>
+    <ul>
+      <li th:each="result : ${results}" th:text="${result}"></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

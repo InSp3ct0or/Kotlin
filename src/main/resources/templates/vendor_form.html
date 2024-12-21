@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Добавить / Редактировать поставщика</title>
+  <title>Přidat / Upravit dodavatele</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1 th:text="${vendor.vendorId != null} ? 'Редактировать поставщика' : 'Добавить поставщика'"></h1>
-<form th:action="@{${vendor.vendorId != null} ? '/vendor/edit/' + ${vendor.vendorId} : '/vendor/add'}" method="post">
-  <label for="name">Имя:</label>
+<h1 th:text="${vendor.vendorId != null} ? 'Upravit dodavatele' : 'Přidat dodavatele'"></h1>
+<form th:action="@{${vendor.vendorId != null} ? '/admin/vendor/edit/' + ${vendor.vendorId} : '/admin/vendor/add'}" method="post">
+  <label for="name">Jméno:</label>
   <input type="text" id="name" name="name" th:value="${vendor.name}" required><br>
 
-  <label for="contactInformation">Контактная информация:</label>
+  <label for="contactInformation">Kontaktní informace:</label>
   <input type="text" id="contactInformation" name="contactInformation" th:value="${vendor.contactInformation}" required><br>
 
-  <button type="submit">Сохранить</button>
+  <button type="submit">Uložit</button>
 </form>
-<a href="/vendor">Назад</a>
+<a href="/admin/vendor">Zpět</a>
 </body>
 </html>

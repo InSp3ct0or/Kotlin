@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Управление событиями</title>
+  <title>Správa událostí</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>События</h1>
+<h1>Události</h1>
 <table>
   <thead>
   <tr>
-    <th>Название</th>
-    <th>Дата</th>
-    <th>Описание</th>
-    <th>Посетители</th>
-    <th>Действия</th>
+    <th>Název</th>
+    <th>Datum</th>
+    <th>Popis</th>
+    <th>Účastníci</th>
+    <th>Akce</th>
   </tr>
   </thead>
   <tbody>
@@ -22,15 +23,15 @@
     <td th:text="${event.description}"></td>
     <td th:text="${event.attendees}"></td>
     <td>
-      <a th:href="@{'/admin/events/edit/' + ${event.eventId}}">Изменить</a>
-      <a th:href="@{'/admin/events/delete/' + ${event.eventId}}">Удалить</a>
+      <a th:href="@{'/admin/events/edit/' + ${event.eventId}}">Upravit</a>
+      <a th:href="@{'/admin/events/delete/' + ${event.eventId}}">Smazat</a>
     </td>
   </tr>
   </tbody>
 </table>
 
-<a href="/admin/events/add">Добавить событие</a>
+<a href="/admin/events/add">Přidat událost</a>
 <br>
-<a href="/admin/dashboard">Вернуться к панели администратора</a>
+<a href="/admin/dashboard">Zpět na správu</a>
 </body>
 </html>

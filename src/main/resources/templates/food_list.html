@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Список продуктов</title>
+  <title>Seznam produktů</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>Список продуктов</h1>
+<h1>Seznam produktů</h1>
 <table>
   <thead>
   <tr>
-    <th>Имя</th>
-    <th>Количество</th>
-    <th>Дата окончания срока</th>
-    <th>Поставщик</th>
-    <th>Действия</th>
+    <th>Název</th>
+    <th>Množství</th>
+    <th>Datum expirace</th>
+    <th>Dodavatel</th>
+    <th>Akce</th>
   </tr>
   </thead>
   <tbody>
@@ -22,14 +23,14 @@
     <td th:text="${food.expiryDate}"></td>
     <td th:text="${food.vendor.name}"></td>
     <td>
-      <a th:href="@{'/food/edit/' + ${food.foodId}}">Редактировать</a> |
-      <form th:action="@{'/food/delete/' + ${food.foodId}}" method="post" style="display:inline;">
-        <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить</button>
+      <a th:href="@{'/admin/food/edit/' + ${food.foodId}}">Upravit</a> |
+      <form th:action="@{'/admin/food/delete/' + ${food.foodId}}" method="post" style="display:inline;">
+        <button type="submit" onclick="return confirm('Opravdu chcete smazat?');">Smazat</button>
       </form>
     </td>
   </tr>
   </tbody>
 </table>
-<a href="/food/add">Добавить продукт</a>
+<a href="/admin/food/add">Přidat produkt</a>
 </body>
 </html>
