@@ -1,6 +1,7 @@
 package com.example.demo.service
 
 import com.example.demo.entity.BinaryContent
+import com.example.demo.entity.FileEntity
 import com.example.demo.repository.FileRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -31,4 +32,10 @@ class FileService(@Autowired private val fileRepository: FileRepository) {
         val file = fileRepository.findById(fileId).orElseThrow { RuntimeException("Soubor nenalezen") }
         return file.fileData
     }
+
+    fun getFile(id: Long): BinaryContent {
+        return fileRepository.findById(id).orElseThrow { RuntimeException("Soubor nebyl nalezen.") }
+    }
+
+
 }

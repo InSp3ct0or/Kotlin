@@ -1,95 +1,127 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Enclosure Hierarchy</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Custom Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/js/scripts.js" defer></script>
+
   <style>
+    /* Custom styles - should be moved to styles.css */
+    /*
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #80deea);
-      color: #004d40;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #80deea);
+        color: #004d40;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
     }
 
     h1 {
-      font-family: 'Pacifico', cursive;
-      color: #00796b;
-      margin-bottom: 20px;
-      font-weight: 300;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1s ease-in-out;
+        font-family: 'Pacifico', cursive;
+        color: #00796b;
+        margin-bottom: 20px;
+        font-weight: 300;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s ease-in-out;
     }
 
     ul {
-      list-style-type: none;
-      padding: 0;
+        list-style-type: none;
+        padding: 0;
     }
 
     li {
-      margin-bottom: 10px;
-      font-size: 16px;
-      animation: slideIn 0.5s ease-in-out;
+        margin-bottom: 10px;
+        font-size: 16px;
+        animation: slideIn 0.5s ease-in-out;
     }
 
     .enclosure-node {
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #004d40;
-      border-radius: 8px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #004d40;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .enclosure-node:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .enclosure-node span {
-      display: block;
-      margin-bottom: 5px;
+        display: block;
+        margin-bottom: 5px;
     }
 
     .root-node {
-      font-weight: bold;
-      color: #00796b;
+        font-weight: bold;
+        color: #00796b;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     @keyframes slideIn {
-      from {
-        transform: translateX(-20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
+    */
   </style>
 </head>
 <body>
-<h1>Enclosure Hierarchy</h1>
+<div class="container">
+  <h1 class="mb-4">Enclosure Hierarchy</h1>
 
-<ul>
-  <li th:each="node : ${enclosuresTree}" class="enclosure-node">
-    <span th:if="${node?.enclosure != null}" th:text="'[' + ${node.enclosure.enclosureId} + '] ' + ${node.enclosure.type}"></span>
+  <ul class="list-unstyled">
+    <li th:each="node : ${enclosuresTree}" class="enclosure-node">
+      <span th:if="${node?.enclosure != null}" th:text="'[' + ${node.enclosure.enclosureId} + '] ' + ${node.enclosure.type}"></span>
+      <span th:if="${node?.enclosure != null}" th:text="'(' + ${node.enclosure.location} + ', Kapacita: ' + ${node.enclosure.capacity} + ')'"></span>
+      <span th:if="${node?.enclosure == null}" th:text="'[null] Root Node'" class="root-node"></span>
+      <ul th:if="${node != null and node.children != null and !node.children.isEmpty()}">
+        <li th:each="child : ${node.children}">
+          <div th:insert="~{this ::renderNode(node=${child})}"></div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- Рекурсивный шаблон -->
+  <div th:fragment="renderNode" class="enclosure-node">
+    <strong th:if="${node?.enclosure != null}" th:text="'[' + ${node.enclosure.enclosureId} + '] ' + ${node.enclosure.type}"></strong>
     <span th:if="${node?.enclosure != null}" th:text="'(' + ${node.enclosure.location} + ', Kapacita: ' + ${node.enclosure.capacity} + ')'"></span>
     <span th:if="${node?.enclosure == null}" th:text="'[null] Root Node'" class="root-node"></span>
     <ul th:if="${node != null and node.children != null and !node.children.isEmpty()}">
@@ -97,20 +129,8 @@
         <div th:insert="~{this ::renderNode(node=${child})}"></div>
       </li>
     </ul>
-  </li>
-</ul>
-
-<!-- Рекурсивный шаблон -->
-<div th:fragment="renderNode" class="enclosure-node">
-  <strong th:if="${node?.enclosure != null}" th:text="'[' + ${node.enclosure.enclosureId} + '] ' + ${node.enclosure.type}"></strong>
-  <span th:if="${node?.enclosure != null}" th:text="'(' + ${node.enclosure.location} + ', Kapacita: ' + ${node.enclosure.capacity} + ')'"></span>
-  <span th:if="${node?.enclosure == null}" th:text="'[null] Root Node'" class="root-node"></span>
-  <ul th:if="${node != null and node.children != null and !node.children.isEmpty()}">
-    <li th:each="child : ${node.children}">
-      <div th:insert="~{this ::renderNode(node=${child})}"></div>
-    </li>
-  </ul>
+  </div>
 </div>
-
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

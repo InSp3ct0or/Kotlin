@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Podrobnosti o zaměstnanci</title>
+
+  <!-- Подключение Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Подключение кастомных стилей -->
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Подключение Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/scripts.js" defer></script>
 </head>
 <body>
-<h1>Podrobnosti o zaměstnanci z veřejného přístupu a povolení zaměstnance</h1>
-<p><strong>Jméno:</strong> <span th:text="${staff.name}"></span></p>
-<p><strong>Pozice:</strong> <span th:text="${staff.position}"></span></p>
-<p><strong>Kontaktní informace:</strong> <span th:text="${staff.contactInformation}"></span></p>
-<p><strong>Plat:</strong> <span th:text="${salaryResult}"></span></p>
+<div class="container my-4">
+  <!-- Кнопка для переключения темы -->
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
 
-<a href="/staff">Zpět na seznam</a>
+  <h1>Podrobnosti o zaměstnanci z veřejného přístupu a povolení zaměstnance</h1>
+  <p><strong>Jméno:</strong> <span th:text="${staff.name}"></span></p>
+  <p><strong>Pozice:</strong> <span th:text="${staff.position}"></span></p>
+  <p><strong>Kontaktní informace:</strong> <span th:text="${staff.contactInformation}"></span></p>
+  <p><strong>Plat:</strong> <span th:text="${salaryResult}"></span></p>
+
+  <a href="/staff" class="btn btn-primary">Zpět na seznam</a>
+</div>
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Správa událostí</title>
+
+  <!-- Подключение Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Подключение кастомных стилей -->
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>Události</h1>
-<table>
-  <thead>
-  <tr>
-    <th>Název</th>
-    <th>Datum</th>
-    <th>Popis</th>
-    <th>Účastníci</th>
-    <th>Akce</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="event : ${events}">
-    <td th:text="${event.name}"></td>
-    <td th:text="${event.eventDate}"></td>
-    <td th:text="${event.description}"></td>
-    <td th:text="${event.attendees}"></td>
-    <td>
-      <a th:href="@{'/admin/events/edit/' + ${event.eventId}}">Upravit</a>
-      <a th:href="@{'/admin/events/delete/' + ${event.eventId}}">Smazat</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="container my-4">
+  <!-- Кнопка для переключения темы -->
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
 
-<a href="/admin/events/add">Přidat událost</a>
-<br>
-<a href="/admin/dashboard">Zpět na správu</a>
+  <h1 class="mb-4">Události</h1>
+
+  <!-- Таблица событий -->
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Název</th>
+      <th>Datum</th>
+      <th>Popis</th>
+      <th>Účastníci</th>
+      <th>Akce</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+      <td th:text="${event.name}"></td>
+      <td th:text="${event.eventDate}"></td>
+      <td th:text="${event.description}"></td>
+      <td th:text="${event.attendees}"></td>
+      <td>
+        <a th:href="@{'/admin/events/edit/' + ${event.eventId}}" class="btn btn-warning btn-sm">Upravit</a>
+        <a th:href="@{'/admin/events/delete/' + ${event.eventId}}" class="btn btn-danger btn-sm">Smazat</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Ссылки для добавления и возврата -->
+  <a href="/admin/events/add" class="btn btn-primary">Přidat událost</a>
+  <a href="/admin/dashboard" class="btn btn-secondary mt-3">Zpět na správu</a>
+</div>
+
+<!-- Подключение Bootstrap JS (для взаимодействия с компонентами, если нужно) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Подключение вашего скрипта для переключения темы -->
+<script src="/js/scripts.js"></script>
+
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs" data-bs-theme="light">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kurzory</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Custom Script -->
+  <script src="/js/scripts.js" defer></script>
 </head>
 <body>
-<div class="container">
-  <h1>Kurzory</h1>
-  <form action="/executeCursor" method="post">
-    <button type="submit">Spustit kurzor</button>
+<div class="container text-center">
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
+
+  <h1 class="mb-4">Kurzory</h1>
+
+  <form action="/executeCursor" method="post" class="mb-4">
+    <button type="submit" class="btn btn-primary">Spustit kurzor</button>
   </form>
+
   <div>
     <h2>Výsledky:</h2>
-    <ul>
-      <li th:each="result : ${results}" th:text="${result}"></li>
+    <ul class="list-group">
+      <li class="list-group-item" th:each="result : ${results}" th:text="${result}"></li>
     </ul>
   </div>
 </div>
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

@@ -26,7 +26,9 @@ class SecurityConfig(
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/animal/**").hasAnyRole("WORKER", "ADMIN")
+                    .requestMatchers("/animal").permitAll() // Открываем доступ ко списку животных
+                    .requestMatchers("/animal/add").hasRole("ADMIN") // Добавление животных только для админов
+
                     .requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN")
                     .anyRequest().permitAll()
             }

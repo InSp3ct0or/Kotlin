@@ -1,129 +1,120 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Seznam výběhů</title>
-  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/js/scripts.js" defer></script>
+
   <style>
+    /* Custom styles - should be moved to styles.css */
+    /*
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #80deea);
-      color: #004d40;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start; /* Изменено с center для корректного отображения таблиц */
-      min-height: 100vh;
-      text-align: center;
-      flex-direction: column; /* Для вертикального расположения элементов */
-      padding-top: 20px; /* Добавлено немного отступа сверху */
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #80deea);
+        color: #004d40;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        text-align: center;
+        flex-direction: column;
+        padding-top: 20px;
     }
 
     h1 {
-      font-family: 'Pacifico', cursive;
-      color: #00796b;
-      margin-bottom: 20px;
-      font-weight: 300;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1s ease-in-out;
+        font-family: 'Pacifico', cursive;
+        color: #00796b;
+        margin-bottom: 20px;
+        font-weight: 300;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s ease-in-out;
     }
 
     .family-group {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 1200px;
-      text-align: left;
-      overflow-x: auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 1200px;
+        text-align: left;
+        overflow-x: auto;
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
     }
 
     th, td {
-      padding: 12px;
-      border: 1px solid #004d40;
-      text-align: left;
-      white-space: nowrap; /* Оставляем text-wrap для предотвращения переноса текста */
+        padding: 12px;
+        border: 1px solid #004d40;
+        text-align: left;
+        white-space: nowrap;
     }
 
     th {
-      background-color: #00796b;
-      color: #ffffff;
-      font-weight: 500;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #00796b;
+        color: #ffffff;
+        font-weight: 500;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .nested-table {
-      margin-top: 20px;
-      margin-left: 30px; /* Для отступа у дочерних таблиц */
-      width: auto; /* Для правильного отображения дочерних таблиц */
+        margin-top: 20px;
+        margin-left: 30px;
+        width: auto;
     }
 
     .add-animal-button {
-      display: inline-block;
-      background-color: #00796b;
-      color: white;
-      padding: 12px 24px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 8px;
-      margin-top: 20px;
-      text-align: center;
-      transition: background-color 0.3s ease;
+        display: inline-block;
+        background-color: #00796b;
+        color: white;
+        padding: 12px 24px;
+        font-size: 18px;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+        transition: background-color 0.3s ease;
     }
 
     .add-animal-button:hover {
-      background-color: #004d40;
+        background-color: #004d40;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
+    */
   </style>
 </head>
 <body>
-<h1>Seznam výběhů</h1>
+<div class="container">
+  <h1>Seznam výběhů</h1>
 
-<div th:each="enclosure : ${enclosures}" class="family-group">
-  <table>
-    <thead>
-    <tr>
-      <th>Typ</th>
-      <th>Umístění</th>
-      <th>Kapacita</th>
-      <th>Akce</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td th:text="${enclosure.type}"></td>
-      <td th:text="${enclosure.location}"></td>
-      <td th:text="${enclosure.capacity}"></td>
-      <td>
-        <a th:href="@{'/admin/enclosure/edit/' + ${enclosure.enclosureId}}">Upravit</a> |
-        <form th:action="@{'/admin/enclosure/delete/' + ${enclosure.enclosureId}}" method="post" style="display:inline;">
-          <button type="submit" onclick="return confirm('Jste si jisti, že chcete odstranit?');">Odstranit</button>
-        </form>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <!-- Дочерние записи (если есть) -->
-  <div th:if="${enclosure.subEnclosures != null && !enclosure.subEnclosures.isEmpty()}">
-    <table class="nested-table">
+  <div th:each="enclosure : ${enclosures}" class="family-group">
+    <table class="table table-bordered">
       <thead>
       <tr>
         <th>Typ</th>
@@ -133,24 +124,51 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="subEnclosure : ${enclosure.subEnclosures}">
-        <td th:text="${subEnclosure.type}"></td>
-        <td th:text="${subEnclosure.location}"></td>
-        <td th:text="${subEnclosure.capacity}"></td>
+      <tr>
+        <td th:text="${enclosure.type}"></td>
+        <td th:text="${enclosure.location}"></td>
+        <td th:text="${enclosure.capacity}"></td>
         <td>
-          <a th:href="@{'/admin/enclosure/edit/' + ${subEnclosure.enclosureId}}">Upravit</a> |
-          <form th:action="@{'/admin/enclosure/delete/' + ${subEnclosure.enclosureId}}" method="post" style="display:inline;">
-            <button type="submit" onclick="return confirm('Jste si jisti, že chcete odstranit?');">Odstranit</button>
+          <a th:href="@{'/admin/enclosure/edit/' + ${enclosure.enclosureId}}" class="btn btn-primary">Upravit</a> |
+          <form th:action="@{'/admin/enclosure/delete/' + ${enclosure.enclosureId}}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Jste si jisti, že chcete odstranit?');">Odstranit</button>
           </form>
         </td>
       </tr>
       </tbody>
     </table>
+
+    <!-- Дочерние записи (если есть) -->
+    <div th:if="${enclosure.subEnclosures != null && !enclosure.subEnclosures.isEmpty()}">
+      <table class="table table-bordered nested-table">
+        <thead>
+        <tr>
+          <th>Typ</th>
+          <th>Umístění</th>
+          <th>Kapacita</th>
+          <th>Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="subEnclosure : ${enclosure.subEnclosures}">
+          <td th:text="${subEnclosure.type}"></td>
+          <td th:text="${subEnclosure.location}"></td>
+          <td th:text="${subEnclosure.capacity}"></td>
+          <td>
+            <a th:href="@{'/admin/enclosure/edit/' + ${subEnclosure.enclosureId}}" class="btn btn-primary">Upravit</a> |
+            <form th:action="@{'/admin/enclosure/delete/' + ${subEnclosure.enclosureId}}" method="post" style="display:inline;">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Jste si jisti, že chcete odstranit?');">Odstranit</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <a href="/admin/enclosure/add" class="btn btn-success add-animal-button">Přidat výběh</a>
+  <a href="/admin/enclosure/enclosure/hierarchy" class="btn btn-info add-animal-button">Zobrazit hierarchii</a>
 </div>
-
-<a href="/admin/enclosure/add" class="add-animal-button">Přidat výběh</a>
-<a href="/admin/enclosure/enclosure/hierarchy" class="add-animal-button">Zobrazit hierarchii</a>
-
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

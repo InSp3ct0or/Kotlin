@@ -2,11 +2,14 @@ package com.example.demo.controller
 
 import com.example.demo.service.FileService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import java.io.IOException
+import org.springframework.http.HttpHeaders
+import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/files")
@@ -36,9 +39,21 @@ class FileController(@Autowired val fileService: FileService) {
     }
 
     // Zobrazení souboru
-    @GetMapping("/view/{fileId}")
-    @ResponseBody
-    fun viewFile(@PathVariable fileId: Long): ByteArray {
-        return fileService.getFileData(fileId) // Získání dat souboru
+    @GetMapping("/view/{id}")
+    fun viewFile(@PathVariable id: Long): ResponseEntity<ByteArray> {
+        val file = fileService.getFile(id)
+
+        val contentType = when {
+            file.fileName.endsWith(".png", true) -> "image/png"
+            file.fileName.endsWith(".jpg", true) || file.fileName.endsWith(".jpeg", true) -> "image/jpeg"
+            file.fileName.endsWith(".gif", true) -> "image/gif"
+            file.fileName.endsWith(".pdf", true) -> "application/pdf"
+            else -> "application/octet-stream"
+        }
+
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_TYPE, contentType) // ✅ Теперь HttpHeaders правильный
+            .body(file.fileData)
     }
+
 }

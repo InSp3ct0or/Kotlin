@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Výsledek nahrání</title>
-  <!-- Slinka na externí soubor stylů -->
+
+  <!-- Подключение Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Подключение кастомных стилей -->
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Подключение Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/js/scripts.js" defer></script>
 </head>
 <body>
-<h1>Výsledek nahrání</h1>
-<p th:text="${message}"></p>
-<p th:if="${fileId != null}">
-  Soubor byl nahrán. Můžete si ho prohlédnout přes <a th:href="@{/files/view/{fileId}(fileId=${fileId})}">odkaz</a>.
-</p>
+<div class="container my-4">
+  <!-- Кнопка для переключения темы -->
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
+
+  <h1>Výsledek nahrání</h1>
+  <p th:text="${message}"></p>
+  <p th:if="${fileId != null}">
+    Soubor byl nahrán. Můžete si ho prohlédnout přes <a th:href="@{/files/view/{fileId}(fileId=${fileId})}">odkaz</a>.
+  </p>
+</div>
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>

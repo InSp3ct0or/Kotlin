@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs" data-bs-theme="light">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Panel</title>
-  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Подключаем внешний файл стилей -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Подключаем внешний файл скриптов -->
+  <script src="/js/scripts.js" defer></script>
 </head>
 <body>
-<h1>Admin Panel</h1>
-<p>Vítejte, <strong th:text="${username}"></strong>!</p>
+<div class="container text-center">
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
 
-<h2>Vyberte tabulku pro úpravy:</h2>
-<ul>
-  <li><a href="/admin/events">Správa událostí</a></li>
-  <li><a href="/admin/food">Správa potravin</a></li>
-  <li><a href="/admin/vendor">Správa dodavatelů</a></li>
-  <li><a href="/admin/enclosure">Správa výběhů</a></li>
-</ul>
+  <div class="card p-4">
+    <h1 class="mb-3">Admin Panel</h1>
+    <p>Vítejte, <strong th:text="${username}"></strong>!</p>
+  </div>
 
-<a href="/">Návrat na hlavní menu</a>
+  <div class="card mt-3 p-3">
+    <h2 class="mb-3">Vyberte tabulku pro úpravy:</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item border-0">
+        <a href="/admin/events">Správa událostí</a>
+      </li>
+      <li class="list-group-item border-0">
+        <a href="/admin/food">Správa potravin</a>
+      </li>
+      <li class="list-group-item border-0">
+        <a href="/admin/vendor">Správa dodavatelů</a>
+      </li>
+      <li class="list-group-item border-0">
+        <a href="/admin/enclosure">Správa výběhů</a>
+      </li>
+    </ul>
+  </div>
+
+  <a href="/" class="btn btn-primary mt-3">Návrat na hlavní menu</a>
+</div>
 </body>
 </html>

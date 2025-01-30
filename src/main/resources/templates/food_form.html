@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Přidat / Upravit produkt</title>
+
+  <!-- Подключение Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Подключение кастомных стилей -->
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Подключение Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h1 th:text="${food.foodId != null} ? 'Upravit produkt' : 'Přidat produkt'"></h1>
-<form th:action="@{${food.foodId != null} ? '/admin/food/edit/' + ${food.foodId} : '/admin/food/add'}" method="post">
-  <label for="name">Název:</label>
-  <input type="text" id="name" name="name" th:value="${food.name}" required><br>
+<div class="container my-4">
+  <!-- Кнопка для переключения темы -->
+  <button class="btn btn-secondary mb-3" onclick="toggleTheme()">Přepnout režim</button>
 
-  <label for="quantity">Množství:</label>
-  <input type="number" id="quantity" name="quantity" th:value="${food.quantity}" required><br>
+  <h1 th:text="${food.foodId != null} ? 'Upravit produkt' : 'Přidat produkt'"></h1>
 
-  <label for="expiryDate">Datum expirace:</label>
-  <input type="date" id="expiryDate" name="expiryDate" th:value="${food.expiryDate}" required><br>
+  <form th:action="@{${food.foodId != null} ? '/admin/food/edit/' + ${food.foodId} : '/admin/food/add'}" method="post">
 
-  <label for="vendor">Dodavatel:</label>
-  <select id="vendor" name="vendor.vendorId" required>
-    <option th:each="vendor : ${vendors}" th:value="${vendor.vendorId}" th:text="${vendor.name}" th:selected="${food.vendor != null && food.vendor.vendorId == vendor.vendorId}"></option>
-  </select><br>
+    <div class="mb-3">
+      <label for="name" class="form-label">Název:</label>
+      <input type="text" id="name" name="name" class="form-control" th:value="${food.name}" required>
+    </div>
 
-  <button type="submit">Uložit</button>
-</form>
-<a href="/admin/food">Zpět</a>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Množství:</label>
+      <input type="number" id="quantity" name="quantity" class="form-control" th:value="${food.quantity}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="expiryDate" class="form-label">Datum expirace:</label>
+      <input type="date" id="expiryDate" name="expiryDate" class="form-control" th:value="${food.expiryDate}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="vendor" class="form-label">Dodavatel:</label>
+      <select id="vendor" name="vendor.vendorId" class="form-select" required>
+        <option th:each="vendor : ${vendors}" th:value="${vendor.vendorId}" th:text="${vendor.name}"
+                th:selected="${food.vendor != null and food.vendor.vendorId == vendor.vendorId}"></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Uložit</button>
+  </form>
+
+  <a href="/admin/food" class="btn btn-secondary mt-3">Zpět</a>
+</div>
+<a href="/" class="btn btn-primary fixed-bottom-left">Návrat na hlavní menu</a>
 </body>
 </html>
